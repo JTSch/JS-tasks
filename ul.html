@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<ul>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning. Question more</li>
+  <li>a long text with no meaning, question more</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>question more: a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+</ul>
+<ul>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning. Question more</li>
+  <li>a long text with no meaning, question more</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>question more: a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>Question more. a long text with no meaning</li>
+</ul>
+<ul>
+  <li>a long text with no meaning. Question more</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning, question more</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>question more: a long text with no meaning</li>
+  <li>question more: a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+  <li>a long text with no meaning</li>
+</ul>
+
+<script>    
+/*Напишите код, который реализует следующую логику.
+Имеется произвольное число списков ul с произвольным числом элементов внутри.
+У каждого элемента может быть разное содержание.
+Необходимо удалить элементы, порядковый номер которых делится на 4 с остатком 3,
+если внутри элемента нет текста, включающего подстроку "question more". При этом
+подстроку "question more", найденную в любых элементах, необходимо заменить на
+"RT question more" со ссылкой на "https://www.rt.com".*/
+
+var uls = document.getElementsByTagName('ul');
+for (var i = 0; i < uls.length; i++) {
+  var lis = uls[i].querySelectorAll('li');
+    for (var j = 0; j < lis.length; j++) {
+      if (j % 4 === 3) {
+        if ( /question more/ig.test(lis[j].previousElementSibling.innerHTML) ) {
+          lis[j].previousElementSibling.remove();
+        }
+      }
+    }; 
+    for (var j = 0; j < lis.length; j++) {
+      if (/question more/ig.test(lis[j].innerHTML)) {
+        lis[j].innerHTML = lis[j].innerHTML.replace( /question more/ig, "<a href='https://www.rt.com'>RT question more</a>" );
+      }
+    };
+}
+</script>
